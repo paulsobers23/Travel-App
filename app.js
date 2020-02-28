@@ -18,7 +18,6 @@ const requestMethod = (method, url, data) => fetch(url, {
 const cities = async (startPoint, destination) => {
   const browseCities = `https://cors-anywhere.herokuapp.com/https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/US/USD/en-US/${startPoint}/${destination}/anytime`;
 
-
   const data = await requestMethod('GET', browseCities);
   const results = await data.json();
   console.log(results);
