@@ -1,5 +1,3 @@
-const places = 'https://cors-anywhere.herokuapp.com/https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/?query=Stockholm';
-
 const quotes = 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/SFO-sky/JFK-sky/anytime?inboundpartialdate=anytime';
 
 const requestMethod = (method, url, data) => fetch(url, {
@@ -15,25 +13,27 @@ const requestMethod = (method, url, data) => fetch(url, {
 		  });
 
 
-const cities = async (startPoint, destination) => {
-  const browseCities = `https://cors-anywhere.herokuapp.com/https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/US/USD/en-US/${startPoint}/${destination}/anytime`;
-
-
-  const data = await requestMethod('GET', browseCities);
+const cities = async () => {
+  // const browseCities = `https://cors-anywhere.herokuapp.com/https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/US/USD/en-US/${startPoint}/${destination}/anytime`;
+  // const getData = `https://cors-anywhere.herokuapp.com/https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/USD/en-GB/?query=${city}`;
+  
+  const travelAPI = 'https://cors-anywhere.herokuapp.com/https://api.travelpayouts.com/v1/prices/monthly?currency=USD&origin=NYC&destination=LON&token=e00615a70c41683257cdcb59315db019'
+  const data = await requestMethod('GET', travelAPI);
   const results = await data.json();
   console.log(results);
+  
+   
 
-  const places = results.Places.map((place) => {
-    const countryName = place.CountryName;
-    const cityName = place.CityName;
-    const airportCode = place.IataCode;
-    console.log(cityName);
-    console.log(countryName);
-    console.log(airportCode);
-  });
+  // let places = results.Places.map((place) => {
+  //   const countryName = place.CountryName;
+  //   const cityName = place.CityName;
+  //   const airportCode = place.IataCode;
+  //   console.log(cityName);
+  //   console.log(countryName);
+  // });
 };
 
-cities('NYC', 'LON');
+cities();
 
 
 const form = document.getElementById('myForm');
