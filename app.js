@@ -1,10 +1,8 @@
-const quotes = 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/SFO-sky/JFK-sky/anytime?inboundpartialdate=anytime';
-
 const requestMethod = (method, url, data) => fetch(url, {
   method,
   body: JSON.stringify(data),
   headers: {
-		  'x-rapidapi-host': 'skyscanner-skyscanner-flight-search-v1.p.rapidapi.com',
+		  'x-rapidapi-host': 'tripadvisor1.p.rapidapi.com',
 		  'x-rapidapi-key': 'e7dc0e5c66msha7c62a4525b23dfp1beafdjsnd67679c4edc0',
   },
 })
@@ -13,27 +11,46 @@ const requestMethod = (method, url, data) => fetch(url, {
 		  });
 
 
-const cities = async () => {
-  // const browseCities = `https://cors-anywhere.herokuapp.com/https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/US/USD/en-US/${startPoint}/${destination}/anytime`;
-  // const getData = `https://cors-anywhere.herokuapp.com/https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/US/USD/en-GB/?query=${city}`;
+const getHotelsByLocation = () => {
+  // const hotelAPI = `https://cors-anywhere.herokuapp.com/https://tripadvisor1.p.rapidapi.com/hotels/list?currency=USD&limit=30&order=asc&lang=en_US&sort=recommended&location_id=${location}&adults=${numOfAdults}&rooms=${numOfRooms}`
   
-  const travelAPI = 'https://cors-anywhere.herokuapp.com/https://api.travelpayouts.com/v1/prices/monthly?currency=USD&origin=NYC&destination=LON&token=e00615a70c41683257cdcb59315db019'
-  const data = await requestMethod('GET', travelAPI);
-  const results = await data.json();
-  console.log(results);
+ 
+  if(navigator.geoleocation){
+    navigator.geoleocation.getCurrentPostion(position => {
+      console.log('My Position:', position)
+      const longitude = position.coords.longitude
+      const latitude = position.coords.latitude
+      
+      // const getApiInfo = async()=>{
+        
+      //   // const hotelAPI = `https://tripadvisor1.p.rapidapi.com/hotels/list?location_id=${locationID}&adults=1&rooms=1`
+      //   const hotelAPI2 = 'https://cors-anywhere.herokuapp.com/https://tripadvisor1.p.rapidapi.com/hotels/list?location_id=4835000&adults=1&rooms=1'
+        
+      //   const data = await requestMethod('GET', hotelAPI2);
+      //   const results = await data.json();
+      //   console.log(results);
+      // }
+    
+      
+    })
+  }
   
-   
-
-  // let places = results.Places.map((place) => {
-  //   const countryName = place.CountryName;
-  //   const cityName = place.CityName;
-  //   const airportCode = place.IataCode;
-  //   console.log(cityName);
-  //   console.log(countryName);
-  // });
 };
 
-cities();
+// getHotelsByLocation();
+
+
+ const getApiInfo = async()=>{
+      
+      // const hotelAPI = `https://tripadvisor1.p.rapidapi.com/hotels/list?location_id=${locationID}&adults=1&rooms=1`
+      const hotelAPI2 = 'https://cors-anywhere.herokuapp.com/https://tripadvisor1.p.rapidapi.com/hotels/list?location_id=1001&adults=1&rooms=1'
+      
+      const data = await requestMethod('GET', hotelAPI2);
+      const results = await data.json();
+      console.log(results);
+}
+getApiInfo()
+
 
 
 const form = document.getElementById('myForm');
