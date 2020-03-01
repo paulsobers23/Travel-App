@@ -50,3 +50,6 @@ body{
     width: 250px;
 }
 
+label{
+    display: block;
+}
