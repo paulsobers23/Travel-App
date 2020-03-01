@@ -31,9 +31,7 @@ const getHotelsByCity = async (locationID) =>{
 }
 getHotelsByCity('60763')
 
-// Responsible for making sure user submit a certain amount of money and load the next page
-const indexForm = document.getElementById('myForm');
-indexForm.addEventListener('submit', (e) => {
+
   e.preventDefault();
   const input = document.getElementById('budget');
   const budget = Number(input.value);
@@ -50,7 +48,6 @@ indexForm.addEventListener('submit', (e) => {
     // window.location = 'hotels.html'
   }
 });
-
 
 // List of location ids for the hotels in every state
 let tripAdvisorHotelID = [ 'New York - 60763 ',
