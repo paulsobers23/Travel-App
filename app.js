@@ -7,25 +7,40 @@ const requestMethod = (method, url, data) => fetch(url, {
   },
 })
 		  .catch((response) => {
-		    const error = new Error('Something went wrong')
-		    error.data = response
-		    console.log(error)
-		    throw error
-		  });
+		    const error = new Error('Something went wrong');
+		    error.data = response;
+		    console.log(error);
+		    throw error;
+});
+		  
 
-// Responsible for locating hotels by the location id and list the name and prices
-const getHotelsByCity = async (locationID) =>{
-  const hotelAPI = `https://tripadvisor1.p.rapidapi.com/hotels/list?location_id=${locationID}&adults=1&rooms=1`
-  const data = await requestMethod('GET', hotelAPI);
-  const response = await data.json();
-  console.log(response);
-  const results = response.data.map((hotels)=>{
-    const hotelName = hotels.name
-    const hotelPrice = hotels.price
-    return `Hotel Name: ${hotelName}\n Hotel Price: ${hotelPrice}\n`
-  })
-  console.log(results)
-  return results
+// Responsible for locating hotels by the latitude and longitude and list the name and prices
+const getHotelsByCity = async (latitude, longitude) => {
+  const hotelAPI2 = ` https://tripadvisor1.p.rapidapi.com/hotels/list-by-latlng?latitude=${latitude}&longitude=${longitude}`
   
+  const data = await requestMethod('GET', hotelAPI2);
+  const response = await data.json();
+  console.log(data);
+  const results = response.data.map((hotels) => {
+    const hotelName = hotels.name;
+    const hotelPrice = hotels.price;
+    return `Hotel Name: ${hotelName}\n Hotel Price: ${hotelPrice}\n`;
+  });
+  console.log(results);
+  return results;
+};
+
+// Responsible for getting cities latitude and longitude
+const getCity = async (city) =>{
+  const searchCity = `https://tripadvisor1.p.rapidapi.com/locations/search?query=${city}`
+  
+  const getData = await requestMethod('GET',searchCity)
+  const response = await getData.json()
+  const latitude = response.data[0].result_object.latitude
+  const longitude = response.data[0].result_object.longitude
+  console.log(response)
+  console.log(latitude)
+  console.log(longitude)
+  getHotelsByCity(latitude,longitude)
 }
-getHotelsByCity('60763')
+//getCity('Albany')
