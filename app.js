@@ -1,4 +1,3 @@
-// custom fetch method
 const requestMethod = (method, url, data) => fetch(url, {
   method,
   body: JSON.stringify(data),
@@ -45,31 +44,3 @@ const getCity = async (city) =>{
   getHotelsByCity(latitude,longitude)
 }
 //getCity('Albany')
-
-
-// Responsible for making sure user submit a certain amount of money on index.html and load the next page
-const indexForm = document.getElementById('myForm');
-const section = document.getElementById('display');
-indexForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const input1 = document.getElementById('budget');
-  const budget = Number(input1.value);
-
-  const city = document.getElementById('city');
-  const arrival = document.getElementById('arrival');
-  const departure = document.getElementById('departure');
-  console.log(budget);
-  console.log(city.value);
-  console.log(departure.value);
-  console.log(arrival.value);
-  
-  if (budget >= 500) {
-
-  }
-  if (Number.isNaN(budget)) {
-    // window.alert('Please enter a number')
-  }
-  if (budget < 500) {
-    // window.alert('We apologize but to use this app correctly please enter $500 or greater')
-  }
-});
