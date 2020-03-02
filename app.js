@@ -12,16 +12,16 @@ const requestMethod = (method, url, data) => fetch(url, {
 		    error.data = response;
 		    console.log(error);
 		    throw error;
-		  });
+});
+		  
 
-
-
-// Responsible for locating hotels by the location id and list the name and prices
-const getHotelsByCity = async (locationID) => {
-  const hotelAPI = `https://tripadvisor1.p.rapidapi.com/hotels/list?location_id=${locationID}&adults=1&rooms=1`;
-  const data = await requestMethod('GET', hotelAPI);
+// Responsible for locating hotels by the latitude and longitude and list the name and prices
+const getHotelsByCity = async (latitude, longitude) => {
+  const hotelAPI2 = ` https://tripadvisor1.p.rapidapi.com/hotels/list-by-latlng?latitude=${latitude}&longitude=${longitude}`
+  
+  const data = await requestMethod('GET', hotelAPI2);
   const response = await data.json();
-  console.log(response);
+  console.log(data);
   const results = response.data.map((hotels) => {
     const hotelName = hotels.name;
     const hotelPrice = hotels.price;
@@ -30,76 +30,21 @@ const getHotelsByCity = async (locationID) => {
   console.log(results);
   return results;
 };
-// getHotelsByCity('60763')
 
-// List of location ids for the hotels in every state
-const tripAdvisorHotelID = {
-  'New York': '60763 ',
-  'Alaska': '28923',
-  'Arkansas': ' 28925',
-  'Arizona': '31352',
-  'American Samoa': '294490',
-  'Alabama': '28922',
-  'California': '28926 ',
-  'Colorado': ' 28927',
-  'Connecticut': '28928',
-  'District of Columbia': '28969',
-  'Delaware': ' 28929',
-  'Florida': ' 28930',
-  'Georgia': ' 28931',
-  'Guam': '60668',
-  'Hawaii': '28932',
-  'Iowa': ' 28936',
-  'Idaho': ' 28933',
-  'Illinois': '28934',
-  'Indiana': ' 28935',
-  'Kansas': ' 28937',
-  'Kentucky': ' 28938',
-  'Louisiana': ' 28939',
-  'Massachusetts': '28942',
-  'Maryland': ' 28941',
-  'Maine': ' 28940',
-  'Michigan': '28943',
-  'Minnesota': ' 28944',
-  'Missouri': ' 28946',
-  'Mississippi': ' 28945',
-  'Montana': ' 28947',
-  'North Carolina': ' 1438847',
-  'North Dakota': ' 28955',
-  'Nebraska': ' 28948',
-  'New Hampshire': ' 186297',
-  'New Jersey': ' 28951',
-  'New Mexico': ' 28952',
-  'Nevada': ' 28949',
-  'Ohio': ' 28956',
-  'Oklahoma': ' 28957',
-  'Oregon': ' 28958',
-  'Pennsylvania': ' 28959',
-  'Puerto Rico': '147319',
-  'Rhode Island': ' 28960',
-  'South Carolina': ' 659476',
-  'South Dakota': ' 28962',
-  'Tennessee': ' 28963',
-  'Texas': ' 28964 ',
-  'Utah': ' 28965',
-  'Virginia': '28967 ',
-  'Virgin Islands': ' 147400',
-  'Vermont': ' 28966',
-  'Washington ': ' 28968',
-  'Wisconsin': ' 28972',
-  'West Virginia': ' 28971',
-  'Wyoming': ' 28973',
-};
-
-const getHotelsID = (obj) =>{
-  for(let city in obj){
-    // console.log(city)
-    // return city
-  }
+// Responsible for getting cities latitude and longitude
+const getCity = async (city) =>{
+  const searchCity = `https://tripadvisor1.p.rapidapi.com/locations/search?query=${city}`
+  
+  const getData = await requestMethod('GET',searchCity)
+  const response = await getData.json()
+  const latitude = response.data[0].result_object.latitude
+  const longitude = response.data[0].result_object.longitude
+  console.log(response)
+  console.log(latitude)
+  console.log(longitude)
+  getHotelsByCity(latitude,longitude)
 }
-getHotelsID(tripAdvisorHotelID);
-
-
+//getCity('Albany')
 
 
 // Responsible for making sure user submit a certain amount of money on index.html and load the next page
@@ -117,7 +62,7 @@ indexForm.addEventListener('submit', (e) => {
   console.log(city.value);
   console.log(departure.value);
   console.log(arrival.value);
-
+  
   if (budget >= 500) {
 
   }
