@@ -14,5 +14,3 @@ const requestMethod = (method, url, data) => fetch(url, {
 
 
 
-
-
