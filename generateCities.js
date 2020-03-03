@@ -1,31 +1,26 @@
-//these two function use the API to find the flights and their prices
-const roundTrip = async (origin,destination,arrival,returnDate) =>{
-    const data = await requestMethod('GET',`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/US/USD/en-US/${origin}-sky/${destination}-sky/${arrival}`);
+const indexForm = document.getElementById('myForm');	
+const section = document.getElementById('display');	
+indexForm.addEventListener('submit', (e) => {	
+  e.preventDefault();	
+  const input1 = document.getElementById('budget');	
+  const budget = Number(input1.value);	
+  const label = document.getElementsByTagName('label')
 
-  const results = await data.json();
-  console.log(results);
-  let OneDestination = origin
-  let oneOrigin = destination
-  let oneArrival = returnDate
-  oneWay(oneOrigin,OneDestination,oneArrival)
-}
+  const origin = document.getElementById('city').value
+  const arrivalDate = document.getElementById('departure').value;	
+  const departureDate = document.getElementById('arrival').value;	
+  console.log(origin)
+  // console.log(destination)
+  console.log(departureDate)
+  console.log(arrivalDate)
+  if (Number.isNaN(budget)) {	
+    window.alert('Please enter a number')	
+  }	
+  if (budget < 500) {	
+    window.alert('We apologize but to use this app correctly please enter $500 or greater')	
+  }	
+  if (budget >= 500){
+    label[0].innerText = 'Enter your budget: $' + budget  
+  }
 
-const oneWay = async (oneOrigin,oneDestination,oneArrival) =>{
-  const data = await requestMethod('GET',`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/US/USD/en-US/${oneOrigin}-sky/${oneDestination}-sky/${oneArrival}`);
-
-const results = await data.json();
-console.log(results);
-}
-
-roundTrip('LO','JFK','2020-04-01','2020-04-07')
-
-
-
-// logic to loop through object 
-// add an eventlistener to all of the cotinental options and that will then determine which object we will be using
-
-// function loopThroughObject(){
-//   for(let continent in allContinents){
-//     allContinents.continent.
-//   }
-// }
+}); 	

@@ -1,4 +1,4 @@
-const requestMethod = (method, url, data) => fetch(url, {
+const searchTripAdvisor = (method, url, data) => fetch(url, {
   method,
   body: JSON.stringify(data),
   headers: {
@@ -15,32 +15,33 @@ const requestMethod = (method, url, data) => fetch(url, {
 		  
 
 // Responsible for locating hotels by the latitude and longitude and list the name and prices
-const getHotelsByCity = async (latitude, longitude) => {
-  const hotelAPI2 = ` https://tripadvisor1.p.rapidapi.com/hotels/list-by-latlng?latitude=${latitude}&longitude=${longitude}`
-  
-  const data = await requestMethod('GET', hotelAPI2);
-  const response = await data.json();
-  console.log(data);
-  const results = response.data.map((hotels) => {
-    const hotelName = hotels.name;
-    const hotelPrice = hotels.price;
-    return `Hotel Name: ${hotelName}\n Hotel Price: ${hotelPrice}\n`;
-  });
-  console.log(results);
-  return results;
-};
+const getHotelsByLatLng = async (latitude, longitude) => {
+  const url = ` https://tripadvisor1.p.rapidapi.com/hotels/list-by-latlng?limit=10&latitude=${latitude}&longitude=${longitude}`
+  const response = await searchTripAdvisor('GET', url);
+  const data = await response.json();
+  const results = data.data
+  return results
+}
 
 // Responsible for getting cities latitude and longitude
-const getCity = async (city) =>{
-  const searchCity = `https://tripadvisor1.p.rapidapi.com/locations/search?query=${city}`
-  
-  const getData = await requestMethod('GET',searchCity)
-  const response = await getData.json()
-  const latitude = response.data[0].result_object.latitude
-  const longitude = response.data[0].result_object.longitude
-  console.log(response)
-  console.log(latitude)
-  console.log(longitude)
-  getHotelsByCity(latitude,longitude)
+const getCityByLatLng = async (city) =>{
+  const url = `https://tripadvisor1.p.rapidapi.com/locations/search?query=${city}`
+  const response = await searchTripAdvisor('GET',url)
+  const data = await response.json()
+  const latitude = data.data[0].result_object.latitude
+  const longitude = data.data[0].result_object.longitude
+  return getHotelsByLatLng(latitude,longitude)
 }
-//getCity('Albany')
+
+// let newYorkHotels = getCityByLatLng('new york')
+// // let minPriceOfnyHotels = newYorkHotels.then(hotels => getMinPrice(hotels))
+
+function getMinPrice(arrOfHotel){
+  let num = arrOfHotel.reduce((minPrice, hotel) =>{
+    hotel = hotel.price.split(' - ')
+    let price = hotel[0]
+    console.log(price)
+    return minPrice < price  ? minPrice : price
+  },Infinity);
+  return num
+};
