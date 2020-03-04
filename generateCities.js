@@ -1,31 +1,38 @@
-//these two function use the API to find the flights and their prices
-const roundTrip = async (origin,destination,arrival,returnDate) =>{
-    const data = await requestMethod('GET',`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/US/USD/en-US/${origin}-sky/${destination}-sky/${arrival}`);
-
-  const results = await data.json();
-  console.log(results);
-  let OneDestination = origin
-  let oneOrigin = destination
-  let oneArrival = returnDate
-  oneWay(oneOrigin,OneDestination,oneArrival)
-}
-
-const oneWay = async (oneOrigin,oneDestination,oneArrival) =>{
-  const data = await requestMethod('GET',`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/US/USD/en-US/${oneOrigin}-sky/${oneDestination}-sky/${oneArrival}`);
-
-const results = await data.json();
-console.log(results);
-}
-
-roundTrip('LO','JFK','2020-04-01','2020-04-07')
-
-
-
-// logic to loop through object 
-// add an eventlistener to all of the cotinental options and that will then determine which object we will be using
-
-// function loopThroughObject(){
-//   for(let continent in allContinents){
-//     allContinents.continent.
+// //these two function use the API to find the flights and their prices
+// const getTrip = async (origin,destination,departureDate, returnDate,budgetPrice) =>{
+//   const departureQuotes = await getFlights(origin, destination, departureDate)
+//   const returnQuotes = await getFlights(destination, origin, returnDate);
+//   let roundTripOptions = [departureQuotes, returnQuotes]
+  
+//   let totalPrice = departureQuotes['Dates']['OutboundDates'][0]['Price'] + returnQuotes['Dates']
+//   ['OutboundDates'][0]['Price']
+//   console.log(roundTripOptions)
+//   if(totalPrice < budgetPrice){
+//     console.log('prices work')
+//   }else if(totalPrice === undefined){
+//     getIndex(origin,departureDate,returnDate,budgetPrice)
 //   }
+//   else{
+//     console.log('prices does not work')
+//   }
+  
 // }
+
+
+
+// // getRoundTrip('LAX','LOND','2020-04-01','2020-04-07',500)
+
+
+
+
+// // this function is going to get a random number and that number will then be the index looked for in the array
+
+
+// function getRandomFlight(origin,departureDate,returnDate,budgetPrice){
+//   let lengthOfUSObject = Object.keys(usAirports).length
+//   let index = Math.floor(Math.random() * Math.floor(lengthOfUSObject))
+//   let airportChoosenAtRandom = Object.keys(usAirports)[index]
+//   return getRoundTrip(origin,airportChoosenAtRandom,departureDate,returnDate,budgetPrice)
+// }
+
+// // getIndex('LAX','2020-04-01','2020-04-07',500)
