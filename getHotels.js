@@ -63,4 +63,4 @@ function getMinPrice(arrOfHotel){
     return minPrice < price  ? minPrice : price
   }, Infinity);
   return num
-
+}

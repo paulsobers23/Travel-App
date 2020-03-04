@@ -7,8 +7,8 @@ indexForm.addEventListener('submit', (e) => {
   const label = document.getElementsByTagName('label')
 
   const origin = document.getElementById('city').value
-  const arrivalDate = document.getElementById('departure').value;	
-  const departureDate = document.getElementById('arrival').value;	
+  const departureDate = document.getElementById('departure').value;	
+  const arrivalDate = document.getElementById('arrival').value;	
   console.log(origin)
   // console.log(destination)
   console.log(departureDate)
@@ -20,7 +20,7 @@ indexForm.addEventListener('submit', (e) => {
     window.alert('We apologize but to use this app correctly please enter $500 or greater')	
   }	
   if (budget >= 500){
-    label[0].innerText = 'Enter your budget: $' + budget  
+    // window.location = 'info.html'
+    getArrOfTrips(origin,departureDate,arrivalDate,budget)
   }
-
 }); 	
