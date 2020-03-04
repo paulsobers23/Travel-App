@@ -82,4 +82,42 @@ function getAirportInUS(data){
     }
 }
 
-getAirportInUS(data)
+// getAirportInUS(data)
+
+		
+const topForty = {ATL:'Atlanta',
+LAX:'Los Angeles',
+ORD:'Chicago',
+DFW:'Dallas',
+DEN:'Denver',
+JFK:'New York',
+SFO:'San Francisco',
+SEA:'Seattle',
+LAS:'Las Vegas',
+MCO:'Orlando',
+EWR:'NewarK',
+CLT:'Charlotte',
+PHX:'Phoenix',
+IAH:'Houston',
+MIA:'Miami',
+BOS:'Boston',
+MSP:'Minneapolis',
+FLL:'Fort Lauderdale',
+DTW:'Detroit',
+PHL:'Philadelphia',
+LGA:'New YorK',
+BWI:'Baltimore',
+SLC:'Salt Lake City',
+SAN:'San Diego',
+IAD:'Washington, D.C.',
+DCA:'Washington, D.C.', 
+MDW:'Chicago', 
+TPA:'Tampa', 
+PDX:'Portland', 
+HNL:'Honolulu'
+}
+
+
+
+
+
