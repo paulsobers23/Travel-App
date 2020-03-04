@@ -116,8 +116,3 @@ TPA:'Tampa',
 PDX:'Portland', 
 HNL:'Honolulu'
 }
-
-
-
-
-
