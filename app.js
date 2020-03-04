@@ -34,14 +34,16 @@ const getCityByLatLng = async (city) =>{
 }
 
 // let newYorkHotels = getCityByLatLng('new york')
-// // let minPriceOfnyHotels = newYorkHotels.then(hotels => getMinPrice(hotels))
+// let minPriceOfnyHotels = newYorkHotels.then(hotels => getMinPrice(hotels))
+//   .then(data => Number(data.substring(1)))
 
 function getMinPrice(arrOfHotel){
   let num = arrOfHotel.reduce((minPrice, hotel) =>{
     hotel = hotel.price.split(' - ')
     let price = hotel[0]
-    console.log(price)
+  // let price = hotel.price.match('/\d+/g')
+    console.log(hotel)
     return minPrice < price  ? minPrice : price
-  },Infinity);
+  }, Infinity);
   return num
 };
