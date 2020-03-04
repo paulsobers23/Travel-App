@@ -59,8 +59,8 @@ function getMinPrice(arrOfHotel){
     hotel = hotel.price.split(' - ')
     let price = hotel[0]
   // let price = hotel.price.match('/\d+/g')
-    console.log(hotel)
+    // console.log(hotel)
     return minPrice < price  ? minPrice : price
   }, Infinity);
   return num
-
+}
