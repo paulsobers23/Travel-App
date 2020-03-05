@@ -68,8 +68,6 @@ function getAllContinentsInOneObject(){
     allContinents.centralAmerica = centralAmerica 
     allContinents.carribbean = carribbean
 }
-// getAllContinentsInOneObject()
-
 
 let usAirports ={}
 function getAirportInUS(data){
@@ -81,9 +79,6 @@ function getAirportInUS(data){
         }
     }
 }
-
-// getAirportInUS(data)
-
 		
 const topForty = {ATL:'Atlanta',
 LAX:'Los Angeles',
@@ -116,8 +111,3 @@ TPA:'Tampa',
 PDX:'Portland', 
 HNL:'Honolulu'
 }
-
-
-
-
-
