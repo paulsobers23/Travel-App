@@ -22,6 +22,7 @@ indexForm.addEventListener('submit', async (e) => {
       <div class="row">
       ${showCity(trip)}
       ${addFlights(trip)}
+      List Of Hotels You Can Stay At:
       ${addHotel(trip)}
       </div>
     </body>
