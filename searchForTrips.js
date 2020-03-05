@@ -4,7 +4,7 @@ const getTrips = async (origin, departureDate, returnDate, budgetPrice)=>{
     if (flights) {
         let roundTripPrice = flights[0]['Dates']['OutboundDates'][0]['Price'] + flights[1]['Dates']['OutboundDates'][0]['Price']
         if(roundTripPrice < budgetPrice){
-            // console.log(roundTripPrice, topForty[origin], topForty[destination])
+            
            let arrHotels = await getCityByLatLng(topForty[destination])
            let hotelPriceStr = await getMinPrice(arrHotels)
            let hotelPriceNum = parseInt(hotelPriceStr.substring(1))
@@ -30,7 +30,6 @@ const getRoundTripFlight = async (origin,destination,departureDate, returnDate) 
     
       return null
     }
-    // console.log(roundTripOptions)
     return roundTripOptions
 
 }
