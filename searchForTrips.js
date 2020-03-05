@@ -20,12 +20,6 @@ const getTrips = async (origin, departureDate, returnDate, budgetPrice)=>{
   return null;
 };
 
-const getRoundTripFlight = async (origin, destination, departureDate, returnDate) => {
-  const departureQuotes = await getFlights(origin, destination, departureDate);
-  const returnQuotes = await getFlights(destination, origin, returnDate);
-  const roundTripOptions = [departureQuotes, returnQuotes];
-  if (departureQuotes.Quotes.length === 0 || returnQuotes.Quotes.length === 0) {
-    return null;
 
 const getRoundTripFlight = async (origin,destination,departureDate, returnDate) =>{
   
@@ -39,12 +33,8 @@ const getRoundTripFlight = async (origin,destination,departureDate, returnDate) 
     // console.log(roundTripOptions)
     return roundTripOptions
 
-  }
-  console.log(roundTripOptions);
-  return roundTripOptions;
-  };
 }
-
+ 
 function getRandomAirport() {
   const lengthOfTopObject = Object.keys(topForty).length;
   const index = Math.floor(Math.random() * Math.floor(lengthOfTopObject));

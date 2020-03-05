@@ -68,7 +68,6 @@ function getAllContinentsInOneObject(){
     allContinents.centralAmerica = centralAmerica 
     allContinents.carribbean = carribbean
 }
-// getAllContinentsInOneObject()
 
 
 let usAirports ={}
@@ -82,7 +81,6 @@ function getAirportInUS(data){
     }
 }
 
-// getAirportInUS(data)
 
 		
 const topForty = {ATL:'Atlanta',

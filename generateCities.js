@@ -1,6 +1,5 @@
 const indexForm = document.getElementById('myForm');	
-const section = document.getElementById('display');	
-indexForm.addEventListener('submit', (e) => {	
+indexForm.addEventListener('submit', async(e) => {	
   e.preventDefault();	
   const input1 = document.getElementById('budget');	
   const budget = Number(input1.value);	
@@ -9,10 +8,6 @@ indexForm.addEventListener('submit', (e) => {
   const origin = document.getElementById('city').value
   const departureDate = document.getElementById('departure').value;	
   const arrivalDate = document.getElementById('arrival').value;	
-  console.log(origin)
-  // console.log(destination)
-  console.log(departureDate)
-  console.log(arrivalDate)
   if (Number.isNaN(budget)) {	
     window.alert('Please enter a number')	
   }	
@@ -20,7 +15,26 @@ indexForm.addEventListener('submit', (e) => {
     window.alert('We apologize but to use this app correctly please enter $500 or greater')	
   }	
   if (budget >= 500){
-    // window.location = 'info.html'
-    getArrOfTrips(origin,departureDate,arrivalDate,budget)
+    let trip = await getArrOfTrips(origin,arrivalDate,departureDate,budget)
+    
+
+    document.body.innerHTML = `<body>
+      <div class="container">
+      <div class="row">
+      ${addHotel(trip)}
+      </div>
+    </body>
+      
+    `
+    
+    
   }
-}); 	
+});
+
+function addHotel(arrOfData){
+  let str = ''
+  for(let i =0; i< 10; i++){
+    str +=  `<div class="col s1">${arrOfData[1]['hotels'][i]['name']}:${arrOfData[1]['hotels'][i]['price']}</div>`
+  }
+  return str
+}
