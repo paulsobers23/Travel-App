@@ -3,7 +3,6 @@ indexForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const input1 = document.getElementById('budget');
   const budget = Number(input1.value);
-  const label = document.getElementsByTagName('label');
 
   const origin = document.getElementById('city').value;
   const departureDate = document.getElementById('departure').value;
@@ -17,44 +16,35 @@ indexForm.addEventListener('submit', async (e) => {
   if (budget >= 500) {
     const trip = await getArrOfTrips(origin, arrivalDate, departureDate, budget);
 
-    document.body.innerHTML = `<body>
-      <div class="container">
+
+    document.body.innerHTML = `
+    <div class = 'container'>
       <div class="row">
-      ${showCity(trip)}
-      ${addFlights(trip)}
-      List Of Hotels You Can Stay At:
-      ${addHotel(trip)}
-      </div>
-    </body>
-    `;
+        <div class="col s12 m7">
+          ${addHotel(trip)}
+        </div>
+        </div>
+    </div>
+    
+    `
   }
 });
 
+// Responsible for adding hotel info from the trip array of object into a card that is pleasant.
 function addHotel(arrOfData) {
   let str = '';
   for (let i = 0; i < 10; i+= 1) {
-    str += `<div class="col s1">${arrOfData[0].hotels[i].name}:${arrOfData[0].hotels[i].price}</div>`;
-  }
-  return str;
-}
-
-function addFlights(arrOfData) {
-  let str = '';
-  for (let i = 0; i < 1; i += 1) {
-    str += `<div class ='col s1'>
-    ${arrOfData[0].origin} to ${arrOfData[0].destination} for ${arrOfData[0].lowestPrice}
+    str += `
+    <div class="card">
+      <div class = 'card-image'>
+        <img src ="${arrOfData[0].hotels[i].photo.images.small.url}">
+      </div>
+      
+      <div class = 'card-content'>
+        <p>${arrOfData[0].hotels[i].name}:${arrOfData[0].hotels[i].price}<p>
+      </div>
+      
     </div>
-    `;
-  }
-  return str;
-}
-
-function showCity(arrOfData) {
-  let str = '';
-  for (let i = 0; i < 1; i++) {
-    str += `<div class ='col s1'>
-    Traveling to ${arrOfData[0].roundTrip[0].Places[1].CityName} from ${arrOfData[0].roundTrip[0].Places[0].CityName}
-    </div>    
     `;
   }
   return str;

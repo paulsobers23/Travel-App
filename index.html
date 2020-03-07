@@ -6,33 +6,28 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="materialize.css" type="text/css" />
   <link rel="stylesheet" href="style.css" type="text/css" />
   <title>Travel App</title>
 </head>
 <body>
-  <div class ='row'>
-    <form id = 'myForm'>
-      <div class = 'row'>
-        <div class = 'input'>
-          <label for = 'budget'>Enter Your Budget:</label>
-          <input id = 'budget' type="text" name = 'budget'/>
-          <label for="city">Enter Your City(AIRPORT CODE):</label>
-          <input id = 'city' type="text" name = 'departure'/>
-          <label for = 'date'>Enter Dates:</label>
-          <input type="date" name=" date" id ='departure'/>
-          <input type="date" name=" date" id ='arrival'/>
-          <input type="submit" name = 'budget' class = 'validate'/>
-        </div>
-      </div>
-    </form>
-  </div>
-
-
+  
+  <form id = 'myForm'>
+    <label for = 'budget'>Enter Your Budget:</label>
+    <input id = 'budget' type="text" name = 'budget'/>
+    <label for="city">Enter Your City(AIRPORT CODE):</label>
+    <input id = 'city' type="text" name = 'departure'/>
+    <label for = 'date'>Enter Dates:</label>
+    <input type="date" name=" date" id ='departure'/>
+    <input type="date" name=" date" id ='arrival'/>
+    <input type="submit" name = 'budget' class = 'validate'/>
+  </form>
+  
+  
   <script src="generateCities.js"></script> 
   <script src="rand.js"></script>
   <script src="searchForTrips.js"></script>
   <script src="generateTenflights.js"></script>
   <script src="getHotels.js"></script>
-  
 </body>
 </html>
