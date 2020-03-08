@@ -50,6 +50,7 @@ const getCityByLatLng = async (city) =>{
   return getHotelsByLatLng(latitude,longitude)
 }
 
+//Responsible for calculating the lowest price for an hotel
 function getMinPrice(arrOfHotel){
   let num = arrOfHotel.reduce((minPrice, hotel) =>{
     hotel = hotel.price.split(' - ')

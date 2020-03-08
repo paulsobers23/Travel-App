@@ -4,16 +4,29 @@ html{
     width: 100%;
     height: 100%;
     font-family: Oswald;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
 }
 
+body{
+    background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+                linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+                linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+
+}
 
 #myForm{
     width: 350px;
     height: 500px;
+    background-color:  rgb(170,170,170);
+    display: grid;
+    text-align: center;
 }
 
 .validate{
-    color:white;
+    color:black;
     font-family: Oswald;
     width: 100px;
     border-radius: 9px;
@@ -24,6 +37,7 @@ html{
 
 label{
     display: block;
+    color:black;
 }
 
 .row{
@@ -34,5 +48,10 @@ label{
 
 .col.s12.m7{
     display: grid;
-    grid-template-columns: repeat(5, auto)
+    grid-template-columns: repeat(5, auto);
+    grid-gap:10px;
+}
+
+input[type=date]{
+    text-align: center;
 }

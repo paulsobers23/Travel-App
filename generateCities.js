@@ -30,11 +30,11 @@ indexForm.addEventListener('submit', async (e) => {
   <div class="container"> 
 <div class="row">
   <ul class="collection with-header">
-  <li class="collection-header"><h4>Flights</h4></li>
+  <li class="collection-header"><h4>You Can Travel To:</h4></li>
   ${str}
   </ul>
-   <a href ="index.html">Would You Like To Go Back ? </a>
   </div>
+   <a href ="index.html">Would You Like To Pick Another Flight ? </a>
   </div>
   `;
       addEvent('button', event);
