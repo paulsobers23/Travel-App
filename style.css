@@ -7,8 +7,6 @@ html{
 }
 
 
-
-
 #myForm{
     width: 350px;
     height: 500px;
@@ -29,5 +27,12 @@ label{
 }
 
 .row{
-    display: inline-block;
+    display: flex;
+    flex-direction:row;
+    align-items:center;
+}
+
+.col.s12.m7{
+    display: grid;
+    grid-template-columns: repeat(5, auto)
 }
