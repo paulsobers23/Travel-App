@@ -34,7 +34,7 @@ indexForm.addEventListener('submit', async (e) => {
   ${str}
   </ul>
   </div>
-   <a href ="index.html">Would You Like To Pick Another Flight ? </a>
+   <a href ="index.html">Would You Like To Start Over ?</a>
   </div>
   `;
       addEvent('button', event);
@@ -48,6 +48,8 @@ indexForm.addEventListener('submit', async (e) => {
     function chooseFlight(e) {
       let str = '';
       const roundFlights = arrOfTrips[e.toElement.id].roundTrip;
+
+      
       // getFlightPage is called in this order with o and 1 because roundFlights[0] is the departure flight and vise versa
       thirdPage();
       function thirdPage() {
@@ -62,6 +64,7 @@ indexForm.addEventListener('submit', async (e) => {
           <li class="collection-header"><h4>Return</h4></li>
             ${second}
         </ul>
+        
         <div class = "col s12 m7">
           ${addHotel(arrOfTrips)}
         </div>
@@ -115,8 +118,30 @@ function addHotel(arrOfData) {
         <div class = 'card-content'>
           <p>${arrOfData[0].hotels[i].name}: ${arrOfData[0].hotels[i].price}<p>
         </div>
+        
       </div>
-    `;
+  `;
+  }
+  return str;
+}
+
+function addHotel2(arrOfData) {
+  let str = '';
+  for (let i = 0; i < arrOfData.length; i += 1) {
+    for(let j = 0; j < arrOfData[i].hotels.length; j+= 1){
+      str += `
+        <div class = "card">
+          <div class "card-image">
+            <img src = "${arrOfData[i].hotels[j].photo.images.small.url}"
+          </div>
+          
+          <div class = 'card-content'>
+            <p>${arrOfData[i].hotels[j].name}: ${arrOfData[i].hotels[j].price}<p>
+          </div>
+        </div>
+        `
+        console.log(arrOfData[i].hotels[j].name)
+    }
   }
   return str;
 }
